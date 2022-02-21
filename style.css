@@ -1,7 +1,6 @@
 body{
     padding: 0;
     margin:0;
-    background-image: url("images/fondo.jpg");
     background-repeat: no-repeat;
     background-attachment: local;
     background-size: cover;
@@ -17,12 +16,15 @@ table{
     margin-bottom: 9rem;
     margin-top: 3rem;
 }
+
 td {
     padding: 15px;
     background-color: cornflowerblue;
     border-style: solid;
     border-width: 3px;
     border-color: white;
+    height: 4rem;
+    width: 4rem;
 }
 
 td:hover{
@@ -32,25 +34,6 @@ td:hover{
     background-size: cover;
     background-position: center; 
 }
-
-@media only screen and (min-width: 200px){
-    td{
-        padding: 7px;
-    }
-}
-
-@media only screen and (min-width: 500px){
-    td{
-        padding: 10px;
-    }
-}
-
-@media only screen and (min-width: 720px){
-    td{
-        padding: 20px;
-    }
-}
-
 
 #options{
     border: #3E2723 solid 0.4rem;
@@ -65,7 +48,19 @@ td:hover{
     z-index: 2;
 }
 
+.inicio{
+    background-color: green;
+}
 
+.fin{
+    background-color: red;
+}
+
+.obstaculo{
+    background-color: black;
+}
+
+/*
 #numFils {
     width: 2.5rem;
 }
@@ -127,13 +122,13 @@ td:hover{
     background-size: cover;
     background-position: center;
 }
-
+*/
 #radios {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
-
+/*
 .wind.path {
     background-color: yellow;
     background-image: url("images/boat.png");
@@ -141,4 +136,4 @@ td:hover{
     background-attachment: local;
     background-size: cover;
     background-position: center;
-}
+}*/

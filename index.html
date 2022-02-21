@@ -8,22 +8,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <table>
-        </table>
-    </div>
+
     <div>
         <hr>
         <div class="my-2" id="options">
 
             <div class="text-center">
                 <div id="radios">
-                    <span><input type="radio" name="option" id="initSelected"> Seleccionar ubicación de origen</span>
-                    <span><input type="radio" name="option" id="blockSelected"> Seleccionar ubicación de final</span>
-                    <span><input type="radio" name="option" id="blockSelected"> Seleccionar ubicación obstaculos</span>
+                    <span><input type="radio" name="option" id="marcar_ini"> Seleccionar ubicación de origen</span>
+                    <span><input type="radio" name="option" id="marcar_fin"> Seleccionar ubicación de final</span>
+                    <span><input type="radio" name="option" id="marcar_obs"> Seleccionar ubicación obstaculos</span>
                 </div>
             </div>
             <div id="calcDiv">
@@ -32,6 +30,13 @@
 
             </div>
         </div>
+    </div>
+    <!-- APARTIR DE AQUI SE TERMINA EL PANEL DE CONFIGURACION-->
+
+    <div class="container">
+        <table>
+            <!-- AQUI ESTA EL TABLERO-->
+        </table>
     </div>
 </body>
 
