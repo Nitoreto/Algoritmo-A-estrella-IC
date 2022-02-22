@@ -1,6 +1,11 @@
 var mode;
+var numIni=1;
+var numFin=1;
 
 $(function () {
+    let prueba = new PriorityQueue();
+    prueba.push(5);
+    prueba.push(10);
     initTable();
     select_mode();
 });
@@ -21,19 +26,10 @@ function initTable() {
                 // si selecciona una casilla sin indicar que tipo es
                 if(mode === undefined){
                     alert("Selecciona que tipo de casilla vas a marcar")
+                }else{
+                    marcarCasillas(event);
                 }
-                //marca la casilla inicio
-                else if(mode === "INIT"){
-                    mark_init(event);
-                }
-                //marca la casilla fin
-                else if(mode === "FIN"){
-
-                }
-                // marca un obstaculo
-                else if(mode === "OBSTACLE"){
-
-                }
+            
             });
             //col.on("click touchstart", clickPosition);
             /*col.on("mouseover", function (event) {
@@ -46,14 +42,36 @@ function initTable() {
     }
 }
 
-function mark_init(event){
+function marcarCasillas(event){
     let eventoF = event.target.classList[0];
     let eventoC = event.target.classList[1];
     let numFila = eventoF.split('f')[1];
     let numCol = eventoC.split('c')[1];
     let casilla = $('.'+eventoF+'.'+eventoC);
+    //marca la casilla inicio
+    if(casilla.attr('class').search("inicio") == -1 && casilla.attr('class').search("fin") == -1 && casilla.attr('class').search("obstaculo") == -1){
+        switch(mode){
+            case "INIT": 
+                if(numIni <= 1){
+                    numIni++;
+                    casilla.toggleClass("inicio");
+                }else
+                    alert("Solo puede haber 1 casilla de inicio")
+            break;
+            case "FIN":
+                if(numFin <= 1){
+                    numFin++;
+                    casilla.toggleClass("fin"); break;
+                }else{
+                    alert("Solo puede haber 1 casilla de fin")
+                }
+                
+            case "OBSTACLE": casilla.toggleClass("obstaculo"); break;
+        };
+    }else{
+        alert("Esa casilla ya esta marcada")
+    }
 
-    casilla.toggleClass("inicio");
 }
 
 function select_mode(){
