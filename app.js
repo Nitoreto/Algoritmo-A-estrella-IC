@@ -2,14 +2,27 @@ var mode;
 var numIni=1;
 var numFin=1;
 
+function comparator(a, b){
+    return a.distanciaAct + a.distancia < b.distanciaAct + b.distancia;
+}
+
 $(function () {
-    let prueba = new PriorityQueue();
-    prueba.push(5);
-    prueba.push(10);
+    /*let prueba = new PriorityQueue(comparator);
+    let b = new Cordenada(5, 3, 5, 5, 1);
+    let i = new Cordenada(4, 2, 5, 5, Math.sqrt(2));
+    prueba.push(b);
+    prueba.push(i);
+    console.log(prueba);*/
+    let matriz = new Array(5);
+    for(let i = 0; i < 5; i++){
+        matriz[i] = new Array(5);
+    }
+    matriz[0][0] = "obs";
+    console.log(matriz[0][0]);
+    console.log(matriz[0][1]);
     initTable();
     select_mode();
 });
-
 
 function initTable() {
     let table = $("table");

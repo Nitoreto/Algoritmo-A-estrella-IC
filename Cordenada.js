@@ -1,9 +1,19 @@
 class Cordenada{
-    constructor(numFila,numCol){
-        this.numCol=numCol;
+
+    constructor(numFila,numCol, finalX, finalY, distanciaAct){
         this.numFila=numFila;
+        this.numCol=numCol;
         this.anterior=null;
-        this.distanciaAct = 0;
+    
+        // coordenadas de la casilla final para calcular d
+        this.finalFila = finalY;
+        this.finalCol = finalX;
+        this.distancia = this.calcularDistancia();
+        this.distanciaAcumulada = distanciaAct;
+    }
+
+    calcularDistancia(){
+        return Math.sqrt(Math.pow(this.finalCol - this.numCol) + Math.pow(this.finalFila - this.finalFila));
     }
     getCol(){
         return this.numCol;
@@ -27,5 +37,9 @@ class Cordenada{
 
     setDistanciaAct(distancia){
         this.distanciaAct = distancia;
+    }
+
+    comparator(a, b){
+        return a.distanciaAct + a.distancia < b.distanciaAct + b.distancia;
     }
 }
