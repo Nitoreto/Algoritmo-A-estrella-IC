@@ -1,6 +1,9 @@
 var mode;
 var numIni=1;
 var numFin=1;
+var obstaculos = new Array(); //el array de obstaculos
+var ini = null; //la coordenada de inicio
+var fin = null; // la coordenada de fin
 
 function comparator(a, b){
     return a.distanciaAct + a.distancia < b.distanciaAct + b.distancia;
@@ -13,15 +16,9 @@ $(function () {
     prueba.push(b);
     prueba.push(i);
     console.log(prueba);*/
-    let matriz = new Array(5);
-    for(let i = 0; i < 5; i++){
-        matriz[i] = new Array(5);
-    }
-    matriz[0][0] = "obs";
-    console.log(matriz[0][0]);
-    console.log(matriz[0][1]);
     initTable();
     select_mode();
+    $("#calcular").on("click", initAlgorithm);
 });
 
 function initTable() {
@@ -74,12 +71,17 @@ function marcarCasillas(event){
             case "FIN":
                 if(numFin <= 1){
                     numFin++;
-                    casilla.toggleClass("fin"); break;
+                    casilla.toggleClass("fin"); 
                 }else{
                     alert("Solo puede haber 1 casilla de fin")
                 }
-                
-            case "OBSTACLE": casilla.toggleClass("obstaculo"); break;
+            break;
+            case "OBSTACLE": 
+                casilla.toggleClass("obstaculo");
+                let nuevoO = new Cordenada(numFila, numCol, 0, 0, 0); //los valores de fin y dist en los obstaculos dan igual
+                obstaculos.push(nuevoO);
+                console.log("la casilla marca es x: " + numFila + " y: " +numCol);
+            break;
         };
     }else{
         alert("Esa casilla ya esta marcada")
@@ -103,4 +105,15 @@ function select_mode(){
         }
         
     })
+}
+
+function initAlgorithm(){
+    //para iniciar el algoritmo tiene que haber al menos ini y fin
+    if(numIni > 1 && numFin > 1){
+        let solucion = null;
+    }
+    else{
+        alert("Tienes que marcar una coordenada inicial y otra final");
+    }
+    //console.log(obstaculos);
 }
