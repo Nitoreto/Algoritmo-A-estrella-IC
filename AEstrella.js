@@ -1,4 +1,4 @@
-class AlgortimoAEstrella{
+class AEstrella{
     constructor(ini,fin,obstaculos, tamTableroX, tamTableroY){
         this.tamTableroFila=tamTableroX;
         this.tamTableroCol=tamTableroY;
@@ -23,10 +23,10 @@ class AlgortimoAEstrella{
         matriz[this.fin.numFila][this.fin.numCol] = "fin";
 
         //colocamos los obstaculos
-        for(let i = 0; i < this.obstaculos.lenght; i++){
+        for(let i = 0; i < this.obstaculos.length; i++){
             matriz[this.obstaculos[i].numFila][this.obstaculos[i].numCol] = "obstaculo";
         }
-
+        console.log(matriz);
     }
 
     algoritmo(){

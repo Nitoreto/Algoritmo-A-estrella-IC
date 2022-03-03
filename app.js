@@ -65,6 +65,7 @@ function marcarCasillas(event){
                 if(numIni <= 1){
                     numIni++;
                     casilla.toggleClass("inicio");
+                    ini = new Cordenada(numFila, numCol, undefined, undefined, 0); 
                 }else
                     alert("Solo puede haber 1 casilla de inicio")
             break;
@@ -72,6 +73,7 @@ function marcarCasillas(event){
                 if(numFin <= 1){
                     numFin++;
                     casilla.toggleClass("fin"); 
+                    fin = new Cordenada(numFila, numCol, numFila, numCol, 0); 
                 }else{
                     alert("Solo puede haber 1 casilla de fin")
                 }
@@ -80,7 +82,6 @@ function marcarCasillas(event){
                 casilla.toggleClass("obstaculo");
                 let nuevoO = new Cordenada(numFila, numCol, 0, 0, 0); //los valores de fin y dist en los obstaculos dan igual
                 obstaculos.push(nuevoO);
-                console.log("la casilla marca es x: " + numFila + " y: " +numCol);
             break;
         };
     }else{
@@ -110,7 +111,10 @@ function select_mode(){
 function initAlgorithm(){
     //para iniciar el algoritmo tiene que haber al menos ini y fin
     if(numIni > 1 && numFin > 1){
-        let solucion = null;
+        ini.setFin(fin.numFila, fin.numCol);
+        console.log(obstaculos);
+        let solucion = new AEstrella(ini, fin, obstaculos, 5, 5);
+        solucion.iniciar();
     }
     else{
         alert("Tienes que marcar una coordenada inicial y otra final");

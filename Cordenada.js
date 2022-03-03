@@ -23,6 +23,11 @@ class Cordenada{
         return this.numFila;
     }
 
+    setFin(fil, col){
+        this.finalFila = fil;
+        this.finalCol = col;
+    }
+
     getAnterior(){
         return this.anterior;
     }
