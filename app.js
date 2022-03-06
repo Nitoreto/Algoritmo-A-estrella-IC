@@ -10,12 +10,6 @@ function comparator(a, b){
 }
 
 $(function () {
-    /*let prueba = new PriorityQueue(comparator);
-    let b = new Cordenada(5, 3, 5, 5, 1);
-    let i = new Cordenada(4, 2, 5, 5, Math.sqrt(2));
-    prueba.push(b);
-    prueba.push(i);
-    console.log(prueba);*/
     initTable();
     select_mode();
     $("#calcular").on("click", initAlgorithm);
@@ -112,9 +106,9 @@ function initAlgorithm(){
     //para iniciar el algoritmo tiene que haber al menos ini y fin
     if(numIni > 1 && numFin > 1){
         ini.setFin(fin.numFila, fin.numCol);
-        console.log(obstaculos);
         let solucion = new AEstrella(ini, fin, obstaculos, 5, 5);
         solucion.iniciar();
+        solucion.algoritmo();
     }
     else{
         alert("Tienes que marcar una coordenada inicial y otra final");

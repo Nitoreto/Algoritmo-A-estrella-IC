@@ -3,7 +3,7 @@ class AEstrella{
         this.tamTableroFila=tamTableroX;
         this.tamTableroCol=tamTableroY;
 
-        this.matriz= new Array();
+        this.matriz = new Array();
         this.abierta=new PriorityQueue(comparator);
         this.cerrada=new Array();
         
@@ -14,19 +14,29 @@ class AEstrella{
 
     iniciar(){
         // inicializamos la matriz
-        let matriz = new Array(this.tamTableroFila);
+        this.matriz = new Array(this.tamTableroFila);
         for(let i = 0; i < this.tamTableroFila; i++){
-            matriz[i] = new Array(this.tamTableroCol);
+            this.matriz[i] = new Array(this.tamTableroCol);
         }
 
+        //rellenamos la matriz
+        for(let i = 0; i < this.tamTableroFila; i++){
+            for(let j = 0; j < this.tamTableroCol;j++){
+                this.matriz[i][j] = "vacio";
+            }
+        }
+
+        //colocamos el ini en la matriz
+        this.matriz[this.ini.numFila][this.ini.numCol] = "ini";
         //colocamos el fin en la matriz
-        matriz[this.fin.numFila][this.fin.numCol] = "fin";
+        this.matriz[this.fin.numFila][this.fin.numCol] = "fin";
 
         //colocamos los obstaculos
         for(let i = 0; i < this.obstaculos.length; i++){
-            matriz[this.obstaculos[i].numFila][this.obstaculos[i].numCol] = "obstaculo";
+            this.matriz[this.obstaculos[i].numFila][this.obstaculos[i].numCol] = "obstaculo";
         }
-        console.log(matriz);
+        console.log(this.matriz);
+        console.log(this.matriz[2][2]);
     }
 
     algoritmo(){
@@ -41,20 +51,29 @@ class AEstrella{
             for(let i = -1; i < 2; i++){
                 for(let j = -1; j < 2; j++){
 
+                    let filaActual = parseInt(actual.numFila) + i;
+                    let colActual = parseInt(actual.numCol) + j;
+
                     if(i != 0 && j != 0){ //que no mire la actual
                         //comprobar que no se salga del tablero
-                        if(-1 < actual.numFila + i < this.tamTableroFila && -1 < actual.numCol + j < this.tamTableroCol ){
+                        if(-1 < filaActual < this.tamTableroFila && -1 < colActual < this.tamTableroCol ){
 
-                            // comprobamos que no sea obstaculo
-                            if(this.matriz[actual.numFila + i][actual.numCol + j] != "obstaculo"){
+                            // comprobamos que no sea obstaculo ni el inicio
+                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"){
 
                                 // hemos llegado al final?
-                                if(this.matriz[actual.numFila + i][actual.numCol + j] != "fin"){
+                                if(this.matriz[filaActual][colActual] == "fin"){
                                     terminado = true;
+                                    //let casillaFinal = 
                                 }
                                 //seguimos
                                 else{
-                                    let nueva = new Cordenada(); 
+                                    //calculamos la distancia euclidea de actual hasta la nueva
+                                    let aux = Math.pow((filaActual - i) - filaActual);
+                                    let distancia = Math.sqrt(Math.pow((filaActual - i) - filaActual)
+                                     + Math.pow((colActual - j) - colActual));
+                                    let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, distancia);
+                                    nueva.setAnterior(actual); 
                                     this.abierta.push(nueva);
                                 }
 
