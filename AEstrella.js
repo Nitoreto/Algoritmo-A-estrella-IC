@@ -44,7 +44,7 @@ class AEstrella{
         let puntoInicial = new Cordenada(ini.numFila, ini.numCol, fin.numFila, fin.numCol, 0);
         this.abierta.push(puntoInicial);
 
-        while(!terminado || this.abierta.size() >= 0){
+        while(!terminado || this.abierta.size() > 0){
             let actual = this.abierta.pop();
 
             //bucle para recorre las casillas adyacentes a la actual
@@ -54,7 +54,7 @@ class AEstrella{
                     let filaActual = parseInt(actual.numFila) + i;
                     let colActual = parseInt(actual.numCol) + j;
 
-                    if(i != 0 && j != 0){ //que no mire la actual
+                    if(i != 0 || j != 0){ //que no mire la actual
                         //comprobar que no se salga del tablero
                         if(-1 < filaActual < this.tamTableroFila && -1 < colActual < this.tamTableroCol ){
 
@@ -83,7 +83,7 @@ class AEstrella{
 
                 } // for2
             }
-        }
+        } //while
     }
 
     comparator(a, b){

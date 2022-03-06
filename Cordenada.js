@@ -1,13 +1,13 @@
 class Cordenada{
 
     constructor(numFila,numCol, finalX, finalY, distanciaAct){
-        this.numFila=numFila;
-        this.numCol=numCol;
+        this.numFila= parseInt(numFila);
+        this.numCol=parseInt(numCol);
         this.anterior=null;
     
         // coordenadas de la casilla final para calcular d
-        this.finalFila = finalY;
-        this.finalCol = finalX;
+        this.finalFila = parseInt(finalY);
+        this.finalCol = parseInt(finalX);
         this.distancia = this.calcularDistancia();
         this.distanciaAcumulada = distanciaAct;
     }
