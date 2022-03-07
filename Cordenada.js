@@ -6,14 +6,16 @@ class Cordenada{
         this.anterior=null;
     
         // coordenadas de la casilla final para calcular d
-        this.finalFila = parseInt(finalY);
-        this.finalCol = parseInt(finalX);
+        this.finalFila = parseInt(finalX);
+        this.finalCol = parseInt(finalY);
         this.distancia = this.calcularDistancia();
         this.distanciaAcumulada = distanciaAct;
     }
 
     calcularDistancia(){
-        return Math.sqrt(Math.pow(this.finalCol - this.numCol) + Math.pow(this.finalFila - this.finalFila));
+        let x =  Math.pow((this.finalFila - this.numFila), 2);
+        let y = Math.pow((this.finalCol - this.numCol), 2);
+        return Math.sqrt(x + y);
     }
     getCol(){
         return this.numCol;

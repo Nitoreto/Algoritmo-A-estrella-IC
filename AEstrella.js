@@ -36,7 +36,6 @@ class AEstrella{
             this.matriz[this.obstaculos[i].numFila][this.obstaculos[i].numCol] = "obstaculo";
         }
         console.log(this.matriz);
-        console.log(this.matriz[2][2]);
     }
 
     algoritmo(){
@@ -44,13 +43,13 @@ class AEstrella{
         let puntoInicial = new Cordenada(ini.numFila, ini.numCol, fin.numFila, fin.numCol, 0);
         this.abierta.push(puntoInicial);
 
-        while(!terminado || this.abierta.size() > 0){
+        while(!terminado && !this.abierta.isEmpty()){
             let actual = this.abierta.pop();
 
             //bucle para recorre las casillas adyacentes a la actual
-            for(let i = -1; i < 2; i++){
-                for(let j = -1; j < 2; j++){
-
+            for(let i = -1; i < 2 && !terminado; i++){
+                for(let j = -1; j < 2 && !terminado; j++){
+                    console.log(this.abierta);
                     let filaActual = parseInt(actual.numFila) + i;
                     let colActual = parseInt(actual.numCol) + j;
 
@@ -69,9 +68,10 @@ class AEstrella{
                                 //seguimos
                                 else{
                                     //calculamos la distancia euclidea de actual hasta la nueva
-                                    let aux = Math.pow((filaActual - i) - filaActual);
-                                    let distancia = Math.sqrt(Math.pow((filaActual - i) - filaActual)
-                                     + Math.pow((colActual - j) - colActual));
+                                    let x = Math.pow(((filaActual - i) - filaActual), 2);
+                                    let y = Math.pow((colActual - j) - colActual , 2);
+                                    let distancia = Math.sqrt(x + y); //hay que hacer las operaciones por separado
+
                                     let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, distancia);
                                     nueva.setAnterior(actual); 
                                     this.abierta.push(nueva);
