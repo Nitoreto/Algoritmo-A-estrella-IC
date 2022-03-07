@@ -72,7 +72,7 @@ class AEstrella{
                                     let y = Math.pow((colActual - j) - colActual , 2);
                                     let distancia = Math.sqrt(x + y); //hay que hacer las operaciones por separado
 
-                                    let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, distancia);
+                                    let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
                                     nueva.setAnterior(actual); 
                                     this.abierta.push(nueva);
                                 }

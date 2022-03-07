@@ -8,8 +8,8 @@ class Cordenada{
         // coordenadas de la casilla final para calcular d
         this.finalFila = parseInt(finalX);
         this.finalCol = parseInt(finalY);
-        this.distancia = this.calcularDistancia();
-        this.distanciaAcumulada = distanciaAct;
+        this.distancia = this.calcularDistancia(); //es la distancia al nodo meta
+        this.distanciaAct = distanciaAct; //es la distancia al nodo actual
     }
 
     calcularDistancia(){
