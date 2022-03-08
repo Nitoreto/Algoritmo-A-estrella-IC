@@ -49,4 +49,12 @@ class Cordenada{
     comparator(a, b){
         return a.distanciaAct + a.distancia < b.distanciaAct + b.distancia;
     }
+
+    tienesAnterior(filaActual, colActual){
+        if()
+        if(anterior != null)
+            return (anterior.numFila != filaActual || anterior.numCol != colActual) 
+        else
+            return false;
+    }
 }

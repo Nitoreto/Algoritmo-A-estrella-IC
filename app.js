@@ -13,6 +13,7 @@ $(function () {
     initTable();
     select_mode();
     $("#calcular").on("click", initAlgorithm);
+    $("#resetear").on("click", resetear);
 });
 
 function initTable() {
@@ -111,6 +112,7 @@ function initAlgorithm(){
         solucion.algoritmo();
         let sol = solucion.arraySolucion();
         imprimirSolucion(sol);
+        
     }
     else{
         alert("Tienes que marcar una coordenada inicial y otra final");
@@ -127,4 +129,9 @@ function imprimirSolucion(array){
         casilla.toggleClass("camino");
 
     }
+}
+
+function resetear(){
+    $('table > tr').remove();
+    initTable();
 }

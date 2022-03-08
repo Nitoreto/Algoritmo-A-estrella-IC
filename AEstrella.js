@@ -56,7 +56,8 @@ class AEstrella{
                         if(-1 < filaActual && filaActual < this.tamTableroFila && -1 < colActual && colActual < this.tamTableroCol ){
 
                             // comprobamos que no sea obstaculo ni el inicio
-                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"){
+                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"
+                                && tienesAnterior(//terminar)){
 
                                 //calculamos la distancia euclidea de actual hasta la nueva
                                 let x = Math.pow(((filaActual - i) - filaActual), 2);
@@ -84,6 +85,10 @@ class AEstrella{
                 } // for2
             }
         } //while
+
+        if(!terminado){
+            console.log("no hay sol");
+        }
     }
 
     comparator(a, b){
@@ -93,9 +98,11 @@ class AEstrella{
     arraySolucion(){
         let arraySol = new Array();
         let coor = fin.getAnterior();
-        while(coor.numFila != this.ini.numFila || coor.numCol != this.ini.numCol){
-            arraySol.push(coor);
-            coor = coor.getAnterior();
+        if(coor != null){
+            while(coor.numFila != this.ini.numFila || coor.numCol != this.ini.numCol){
+                arraySol.push(coor);
+                coor = coor.getAnterior();
+            }
         }
         return arraySol;
     }
