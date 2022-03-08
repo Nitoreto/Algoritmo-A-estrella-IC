@@ -60,6 +60,10 @@ td:hover{
     background-color: black;
 }
 
+.camino{
+    background-color: yellow;
+}
+
 /*
 #numFils {
     width: 2.5rem;

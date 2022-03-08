@@ -35,7 +35,6 @@ class AEstrella{
         for(let i = 0; i < this.obstaculos.length; i++){
             this.matriz[this.obstaculos[i].numFila][this.obstaculos[i].numCol] = "obstaculo";
         }
-        console.log(this.matriz);
     }
 
     algoritmo(){
@@ -49,28 +48,29 @@ class AEstrella{
             //bucle para recorre las casillas adyacentes a la actual
             for(let i = -1; i < 2 && !terminado; i++){
                 for(let j = -1; j < 2 && !terminado; j++){
-                    console.log(this.abierta);
                     let filaActual = parseInt(actual.numFila) + i;
                     let colActual = parseInt(actual.numCol) + j;
 
                     if(i != 0 || j != 0){ //que no mire la actual
                         //comprobar que no se salga del tablero
-                        if(-1 < filaActual < this.tamTableroFila && -1 < colActual < this.tamTableroCol ){
+                        if(-1 < filaActual && filaActual < this.tamTableroFila && -1 < colActual && colActual < this.tamTableroCol ){
 
                             // comprobamos que no sea obstaculo ni el inicio
                             if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"){
 
+                                //calculamos la distancia euclidea de actual hasta la nueva
+                                let x = Math.pow(((filaActual - i) - filaActual), 2);
+                                let y = Math.pow((colActual - j) - colActual , 2);
+                                let distancia = Math.sqrt(x + y); //hay que hacer las operaciones por separado
+
                                 // hemos llegado al final?
                                 if(this.matriz[filaActual][colActual] == "fin"){
                                     terminado = true;
-                                    //let casillaFinal = 
+                                    fin = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
+                                    fin.setAnterior(actual);
                                 }
                                 //seguimos
                                 else{
-                                    //calculamos la distancia euclidea de actual hasta la nueva
-                                    let x = Math.pow(((filaActual - i) - filaActual), 2);
-                                    let y = Math.pow((colActual - j) - colActual , 2);
-                                    let distancia = Math.sqrt(x + y); //hay que hacer las operaciones por separado
 
                                     let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
                                     nueva.setAnterior(actual); 
@@ -89,4 +89,15 @@ class AEstrella{
     comparator(a, b){
         return a.distanciaAct + a.distancia < b.distanciaAct + b.distancia;
     }
+
+    arraySolucion(){
+        let arraySol = new Array();
+        let coor = fin.getAnterior();
+        while(coor.numFila != this.ini.numFila || coor.numCol != this.ini.numCol){
+            arraySol.push(coor);
+            coor = coor.getAnterior();
+        }
+        return arraySol;
+    }
+
 }

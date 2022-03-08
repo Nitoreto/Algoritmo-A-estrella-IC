@@ -109,9 +109,22 @@ function initAlgorithm(){
         let solucion = new AEstrella(ini, fin, obstaculos, 5, 5);
         solucion.iniciar();
         solucion.algoritmo();
+        let sol = solucion.arraySolucion();
+        imprimirSolucion(sol);
     }
     else{
         alert("Tienes que marcar una coordenada inicial y otra final");
     }
     //console.log(obstaculos);
+}
+
+function imprimirSolucion(array){
+    for(let i = 0; i < array.length; i++){
+        let coor = array[i];
+        let fila = coor.getFila();
+        let col = coor.getCol();
+        let casilla = $('.f'+fila+'.c'+col);
+        casilla.toggleClass("camino");
+
+    }
 }
