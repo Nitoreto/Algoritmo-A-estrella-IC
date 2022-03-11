@@ -44,6 +44,7 @@ class AEstrella{
 
         while(!terminado && !this.abierta.isEmpty()){
             let actual = this.abierta.pop();
+            this.cerrada.push(actual);
 
             //bucle para recorre las casillas adyacentes a la actual
             for(let i = -1; i < 2 && !terminado; i++){
@@ -57,7 +58,8 @@ class AEstrella{
 
                             // comprobamos que no sea obstaculo ni el inicio y que no sea el nodo padre y que no este en cerrada
                             if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini" && 
-                                !actual.comprobarAnterior(filaActual, colActual) && !this.estaCerrada(filaActual, colActual)){
+                                !actual.comprobarAnterior(filaActual, colActual) && !this.estaCerrada(filaActual, colActual)
+                                    && this.matriz[filaActual][colActual] != "abierta"){
 
                                 //calculamos la distancia euclidea de actual hasta la nueva
                                 let x = Math.pow(filaActual - i -filaActual, 2)
@@ -76,7 +78,8 @@ class AEstrella{
                                     let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
                                     nueva.setAnterior(actual); 
                                     this.abierta.push(nueva);
-                                    this.cerrada.push(actual);
+                                    this.matriz[filaActual][colActual] = "abierta";
+                                    //this.cerrada.push(actual);
                                 }
 
                             }
