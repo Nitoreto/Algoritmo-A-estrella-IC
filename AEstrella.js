@@ -56,11 +56,10 @@ class AEstrella{
                         if(-1 < filaActual && filaActual < this.tamTableroFila && -1 < colActual && colActual < this.tamTableroCol ){
 
                             // comprobamos que no sea obstaculo ni el inicio
-                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"
-                                && tienesAnterior(//terminar)){
+                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"){
 
                                 //calculamos la distancia euclidea de actual hasta la nueva
-                                let x = Math.pow(((filaActual - i) - filaActual), 2);
+                                let xeeed = Math.pow(filaActual - i -filaActual, 2)
                                 let y = Math.pow((colActual - j) - colActual , 2);
                                 let distancia = Math.sqrt(x + y); //hay que hacer las operaciones por separado
 
@@ -83,7 +82,7 @@ class AEstrella{
                     }
 
                 } // for2
-            }
+            } 
         } //while
 
         if(!terminado){
