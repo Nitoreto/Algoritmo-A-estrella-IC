@@ -133,5 +133,10 @@ function imprimirSolucion(array){
 
 function resetear(){
     $('table > tr').remove();
+    numIni=1;
+    numFin=1;
+    obstaculos = new Array();
+    ini = null; 
+    fin = null; 
     initTable();
 }
