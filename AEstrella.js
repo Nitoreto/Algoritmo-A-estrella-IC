@@ -55,11 +55,12 @@ class AEstrella{
                         //comprobar que no se salga del tablero
                         if(-1 < filaActual && filaActual < this.tamTableroFila && -1 < colActual && colActual < this.tamTableroCol ){
 
-                            // comprobamos que no sea obstaculo ni el inicio
-                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini"){
+                            // comprobamos que no sea obstaculo ni el inicio y que no sea el nodo padre y que no este en cerrada
+                            if(this.matriz[filaActual][colActual] != "obstaculo" && this.matriz[filaActual][colActual] != "ini" && 
+                                !actual.comprobarAnterior(filaActual, colActual) && !this.estaCerrada(filaActual, colActual)){
 
                                 //calculamos la distancia euclidea de actual hasta la nueva
-                                let xeeed = Math.pow(filaActual - i -filaActual, 2)
+                                let x = Math.pow(filaActual - i -filaActual, 2)
                                 let y = Math.pow((colActual - j) - colActual , 2);
                                 let distancia = Math.sqrt(x + y); //hay que hacer las operaciones por separado
 
@@ -75,6 +76,7 @@ class AEstrella{
                                     let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
                                     nueva.setAnterior(actual); 
                                     this.abierta.push(nueva);
+                                    this.cerrada.push(actual);
                                 }
 
                             }
@@ -104,6 +106,16 @@ class AEstrella{
             }
         }
         return arraySol;
+    }
+
+    estaCerrada(fila, col){
+        //comprobamos que la coordenada no este cerrada
+        let esta = false;
+        for(let i = 0; i < this.cerrada.length && !esta; i++){
+            if(this.cerrada[i].numFila == fila && this.cerrada[i].numCol == col){
+                esta = true;
+            }
+        }
     }
 
 }

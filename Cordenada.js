@@ -50,7 +50,18 @@ class Cordenada{
         return a.distanciaAct + a.distancia < b.distanciaAct + b.distancia;
     }
 
-    tienesAnterior(filaActual, colActual){
-
+    comprobarAnterior(filaActual, colActual){
+        //devuelve falso si no es el nodo padre
+        if(this.anterior == null){ //si es null es que es el primero
+            return false;
+        }
+        else if(this.anterior.numFila != filaActual || this.anterior.numCol != colActual){
+            return false;
+        }
+        else{
+            // cumple que la fila y la col actual son iguales que los de su anterior
+            //y por tanto es su padre
+            return true;
+        }
     }
 }
