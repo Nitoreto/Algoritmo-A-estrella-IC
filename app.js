@@ -2,6 +2,7 @@ var mode;
 var numIni=1;
 var numFin=1;
 var obstaculos = new Array(); //el array de obstaculos
+var wayPoint = new Array(); //el array de way points
 var ini = null; //la coordenada de inicio
 var fin = null; // la coordenada de fin
 
@@ -78,6 +79,11 @@ function marcarCasillas(event){
                 let nuevoO = new Cordenada(numFila, numCol, 0, 0, 0); //los valores de fin y dist en los obstaculos dan igual
                 obstaculos.push(nuevoO);
             break;
+            case "WAY": 
+                casilla.toggleClass("wayPoint");
+                let nuevoW = new Cordenada(numFila, numCol, 0, 0, 0); //los valores de fin y dist en los way points dan igual
+                wayPoint.push(nuevoW);
+            break;
         };
     }else{
         alert("Esa casilla ya esta marcada")
@@ -90,6 +96,7 @@ function select_mode(){
         let ini = $("#marcar_ini").is(":checked");
         let fin = $("#marcar_fin").is(":checked");
         let obs = $("#marcar_obs").is(":checked");
+        let way = $("#marcar_way").is(":checked");
         if(ini === true){
             mode = "INIT"
         }
@@ -99,6 +106,9 @@ function select_mode(){
         else if(obs === true){
             mode = "OBSTACLE"
         }
+        else if(way === true){
+            mode = "WAY"
+        }
         
     })
 }
@@ -107,11 +117,11 @@ function initAlgorithm(){
     //para iniciar el algoritmo tiene que haber al menos ini y fin
     if(numIni > 1 && numFin > 1){
         ini.setFin(fin.numFila, fin.numCol);
-        let solucion = new AEstrella(ini, fin, obstaculos, 5, 5);
+        let solucion = new AEstrella(ini, fin, obstaculos,wayPoint, 5, 5);
         solucion.iniciar();
         solucion.algoritmo();
-        let sol = solucion.arraySolucion();
-        imprimirSolucion(sol);
+       
+        imprimirSolucion(solucion.returnArraySoluciones());
         
     }
     else{
@@ -120,14 +130,17 @@ function initAlgorithm(){
     //console.log(obstaculos);
 }
 
-function imprimirSolucion(array){
-    for(let i = 0; i < array.length; i++){
-        let coor = array[i];
-        let fila = coor.getFila();
-        let col = coor.getCol();
-        let casilla = $('.f'+fila+'.c'+col);
-        casilla.toggleClass("camino");
+function imprimirSolucion(soluciones){
+    for(let i = 0; i < soluciones.length; i++){
+        let array = soluciones.shift();
+        for(let j = 0; j < array.length; j++){
+            let coor = array[j];
+            let fila = coor.getFila();
+            let col = coor.getCol();
+            let casilla = $('.f'+fila+'.c'+col);
+            casilla.toggleClass("camino");
 
+        }
     }
 }
 
@@ -136,6 +149,7 @@ function resetear(){
     numIni=1;
     numFin=1;
     obstaculos = new Array();
+    wayPoint = new Array();
     ini = null; 
     fin = null; 
     initTable();
