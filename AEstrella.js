@@ -43,15 +43,12 @@ class AEstrella{
         //Reseteamos las listas y array
         this.abierta=new PriorityQueue(comparator);
         this.cerrada=new Array();
-        this.iniciar();
 
-        //Eliminamos las posiciones anteriores
-        this.matriz[this.ini.numFila][this.ini.numCol] = "vacio";
-        //colocamos el fin en la matriz
-        this.matriz[this.fin.numFila][this.fin.numCol] = "vacio";
+        this.iniciar();
         
         this.ini= this.fin;//ini ahora es fin
         this.fin = this.wayPoint.shift(); //fin es el sigueinte way point
+        this.ini.setFin(this.fin.numFila, this.fin.numCol);// Colocamos el nuevo fin para la distancia
 
         //colocamos el ini en la matriz
         this.matriz[this.ini.numFila][this.ini.numCol] = "ini";
@@ -61,7 +58,7 @@ class AEstrella{
 
     arraySolucion(){
         let arraySol = new Array();
-        let coor = fin.getAnterior();
+        let coor = this.fin.getAnterior();
         if(coor != null){
             while(coor.numFila != this.ini.numFila || coor.numCol != this.ini.numCol){
                 arraySol.push(coor);
@@ -76,7 +73,7 @@ class AEstrella{
             this.loopWayPoint();//Se resetea para volver a colocar ini y fin segun los wayPoint
 
             let terminado=false;
-            let puntoInicial = new Cordenada(ini.numFila, ini.numCol, fin.numFila, fin.numCol, 0);
+            let puntoInicial = new Cordenada(this.ini.numFila, this.ini.numCol, this.fin.numFila, this.fin.numCol, 0);
             this.abierta.push(puntoInicial);
 
             while(!terminado && !this.abierta.isEmpty()){
@@ -106,14 +103,14 @@ class AEstrella{
                                     // hemos llegado al final?
                                     if(this.matriz[filaActual][colActual] == "fin"){
                                         terminado = true;
-                                        fin = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
-                                        fin.setAnterior(actual);
+                                        this.fin = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
+                                        this.fin.setAnterior(actual);
                                         this.arraySoluciones.push(this.arraySolucion());
                                     }
                                     //seguimos
                                     else{
 
-                                        let nueva = new Cordenada(filaActual, colActual, fin.numFila, fin.numCol, actual.distanciaAct + distancia);
+                                        let nueva = new Cordenada(filaActual, colActual, this.fin.numFila, this.fin.numCol, actual.distanciaAct + distancia);
                                         nueva.setAnterior(actual); 
                                         this.abierta.push(nueva);
                                         this.matriz[filaActual][colActual] = "abierta";

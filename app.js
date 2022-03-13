@@ -1,3 +1,4 @@
+var tamTablero = 10;
 var mode;
 var numIni=1;
 var numFin=1;
@@ -20,9 +21,9 @@ $(function () {
 function initTable() {
     let table = $("table");
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < tamTablero; i++) {
         let fila = $("<tr></tr>");
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < tamTablero; j++) {
             let col = $("<td></td>");
             col.addClass("f" + i);
             col.addClass("c" + j);
@@ -116,9 +117,8 @@ function select_mode(){
 function initAlgorithm(){
     //para iniciar el algoritmo tiene que haber al menos ini y fin
     if(numIni > 1 && numFin > 1){
-        ini.setFin(fin.numFila, fin.numCol);
-        let solucion = new AEstrella(ini, fin, obstaculos,wayPoint, 5, 5);
-        solucion.iniciar();
+
+        let solucion = new AEstrella(ini, fin, obstaculos,wayPoint, tamTablero, tamTablero);
         solucion.algoritmo();
        
         imprimirSolucion(solucion.returnArraySoluciones());
@@ -131,14 +131,15 @@ function initAlgorithm(){
 }
 
 function imprimirSolucion(soluciones){
-    for(let i = 0; i < soluciones.length; i++){
+    let tamSol = soluciones.length;
+    for(let i = 0; i < tamSol; i++){
         let array = soluciones.shift();
         for(let j = 0; j < array.length; j++){
             let coor = array[j];
             let fila = coor.getFila();
             let col = coor.getCol();
             let casilla = $('.f'+fila+'.c'+col);
-            casilla.toggleClass("camino");
+            casilla.addClass("camino");
 
         }
     }
