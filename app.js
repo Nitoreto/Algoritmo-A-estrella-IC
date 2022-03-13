@@ -1,4 +1,5 @@
 var tamTablero = 10;
+var numeroWayPoint=1;
 var mode;
 var numIni=1;
 var numFin=1;
@@ -27,8 +28,6 @@ function initTable() {
             let col = $("<td></td>");
             col.addClass("f" + i);
             col.addClass("c" + j);
-            /*if (i === dFil && j === dCol)V
-                col.prop("id", "destination");*/
             col.on("click", function(){
                 // si selecciona una casilla sin indicar que tipo es
                 if(mode === undefined){
@@ -38,11 +37,6 @@ function initTable() {
                 }
             
             });
-            //col.on("click touchstart", clickPosition);
-            /*col.on("mouseover", function (event) {
-                if (mouseDown)
-                    clickPosition(event);
-            })*/
             fila.append(col);
         }
         table.append(fila);
@@ -82,6 +76,8 @@ function marcarCasillas(event){
             break;
             case "WAY": 
                 casilla.toggleClass("wayPoint");
+                casilla.append(numeroWayPoint); 
+                numeroWayPoint++;
                 let nuevoW = new Cordenada(numFila, numCol, 0, 0, 0); //los valores de fin y dist en los way points dan igual
                 wayPoint.push(nuevoW);
             break;

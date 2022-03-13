@@ -64,11 +64,12 @@ td:hover{
 }
 
 .camino{
-    background-color: yellow;
+    background-color:rgb(0, 225, 255);
 }
 
 .wayPoint{
-    background-color: rgb(0, 255, 0);
+    text-align: center;
+    background-color: yellowgreen;
 }
 
 /*
