@@ -50,7 +50,7 @@ function marcarCasillas(event){
     let numCol = eventoC.split('c')[1];
     let casilla = $('.'+eventoF+'.'+eventoC);
     //marca la casilla inicio
-    if(casilla.attr('class').search("inicio") == -1 && casilla.attr('class').search("fin") == -1 && casilla.attr('class').search("obstaculo") == -1){
+    if(casilla.attr('class').search("inicio") == -1 && casilla.attr('class').search("fin") == -1 && casilla.attr('class').search("obstaculo") == -1 && casilla.attr('class').search("wayPoint") == -1){
         switch(mode){
             case "INIT": 
                 if(numIni <= 1){
@@ -106,24 +106,20 @@ function select_mode(){
         else if(way === true){
             mode = "WAY"
         }
-        
     })
 }
 
 function initAlgorithm(){
     //para iniciar el algoritmo tiene que haber al menos ini y fin
     if(numIni > 1 && numFin > 1){
-
         let solucion = new AEstrella(ini, fin, obstaculos,wayPoint, tamTablero, tamTablero);
         solucion.algoritmo();
        
-        imprimirSolucion(solucion.returnArraySoluciones());
-        
+        imprimirSolucion(solucion.returnArraySoluciones());      
     }
     else{
         alert("Tienes que marcar una coordenada inicial y otra final");
     }
-    //console.log(obstaculos);
 }
 
 function imprimirSolucion(soluciones){
@@ -145,6 +141,7 @@ function resetear(){
     $('table > tr').remove();
     numIni=1;
     numFin=1;
+    numeroWayPoint=1;
     obstaculos = new Array();
     wayPoint = new Array();
     ini = null; 
