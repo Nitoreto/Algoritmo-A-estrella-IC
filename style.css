@@ -13,8 +13,8 @@ table{
     border-color: darkgray;
     width: 50%;
     margin: auto;
-    margin-bottom: 9rem;
-    margin-top: 3rem;
+    margin-bottom: 11rem;
+    margin-top: 0;
 }
 
 td {
@@ -37,14 +37,13 @@ td:hover{
 
 #options{
     border: darkgray solid 0.4rem;
-    padding: 2rem;
+    padding: 0.5rem;
     background: white;
     display: flex;
     justify-content: space-between;
     position: fixed;
     bottom: 0;
     left: 6rem;
-    right: 6rem;
     z-index: 2;
 }
 .casilla{
@@ -64,83 +63,20 @@ td:hover{
 }
 
 .camino{
-    background-color: yellow;
+    background-color:rgb(0, 225, 255);
 }
 
-/*
-#numFils {
-    width: 2.5rem;
-}
-#numCols {
-    width: 2.5rem;
-}
-#filDest{
-    width: 2.5rem;
-}
-#colDest{
-    width: 2.5rem;
-}
-#probPirate{
-    width: 2.5rem;
-}
-#destination {
-    background-color: red;
-    background-image: url("images/tesoro.png");
-    background-repeat: no-repeat;
-    background-attachment: local;
-    background-size: cover;
-    background-position: center; 
+.wayPoint{
+    text-align: center;
+    background-color: yellowgreen;
 }
 
-.block {
-    background-image: url("images/mina.png");
-    background-repeat: no-repeat;
-    background-attachment: local;
-    background-size: cover;
-    background-position: center; 
-}
-
-#calcDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.pirate{
-    background-image: url("images/pirata.png");
-    background-repeat: no-repeat;
-    background-attachment: local;
-    background-size: cover;
-    background-position: center; 
-}
-
-.wind{
-    background-image: url("images/wind.png");
-    background-repeat: no-repeat;
-    background-attachment: local;
-    background-size: contain;
-    background-position: center; 
-}
-
-.path{
-    background-image: url("images/boat.png");
-    background-attachment: no-repeat;
-    background-attachment: local;
-    background-size: cover;
-    background-position: center;
-}
-*/
 #radios {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
-/*
-.wind.path {
-    background-color: yellow;
-    background-image: url("images/boat.png");
-    background-attachment: no-repeat;
-    background-attachment: local;
-    background-size: cover;
-    background-position: center;
-}*/
+
+#botones{
+    margin-top:2%;
+}
