@@ -72,6 +72,16 @@ td:hover{
     background-color: yellowgreen;
 }
 
+#radios {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#botones{
+    margin-top:2%;
+}
+
 /*
 #numFils {
     width: 2.5rem;
@@ -106,9 +116,7 @@ td:hover{
 }
 
 #calcDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin:auto;
 }
 
 .pirate{
@@ -135,11 +143,7 @@ td:hover{
     background-position: center;
 }
 */
-#radios {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
+
 /*
 .wind.path {
     background-color: yellow;
